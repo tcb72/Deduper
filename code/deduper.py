@@ -18,7 +18,7 @@ def main_code(filename):
 
     output_dict = set()
 
-    with open('STL96.txt', 'r') as f:
+    with open('../STL96.txt', 'r') as f:
         valid_UMIs = f.read().splitlines()
 
     output_file_name = filename.split('.sam')[0] + '_deduped.sam'
@@ -39,7 +39,6 @@ def main_code(filename):
                 bit_flag = int(cols[1])
                 isReverseStrand = isReverse(bit_flag)
 
-
                 if isMapped(bit_flag):
                     offset = 0
                     CIGAR_split = re.findall(r'\d+[MIDNSHP=X]', cols[5])
@@ -50,10 +49,8 @@ def main_code(filename):
                             offset -= int(CIGAR_split[0][:-1])
                     else:
                         for index,id in enumerate(CIGAR_split):
-                            if ('S' in id) & (index != 0):
+                            if (('S' in id) & (index != 0)) | ('I' not in id):
                                 offset +=  int(id[:-1])
-                            elif 'I' not in id:
-                                offset += int(id[:-1])
                     actual_pos = sam_pos + offset
                 if (UMI, actual_pos, isReverseStrand) in output_dict:
                     dupe_counter += 1
