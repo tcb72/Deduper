@@ -66,4 +66,4 @@ if __name__ == "__main__":
     parser.add_argument("-in", "--input", help="Enter the path of the sorted SAM file.")
 
     args = parser.parse_args()
-    code_to_test = main_code(args.input)
+    main_code(args.input)
