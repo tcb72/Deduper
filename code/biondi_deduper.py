@@ -46,8 +46,6 @@ def dedupe_umi(filename, isPairedEnd, UMI_file):
     # instantiate a dupe counter. will contain how many duplicates there are.
     dupe_counter = 0
 
-    prev_chr = None
-
     # instantiate a set. will contain each unique combination of UMI, actual position, and strand
     output_set = set()
 
@@ -148,8 +146,6 @@ def dedupe_randomer(filename, isPairedEnd):
 
     # instantiate a dupe counter. will contain how many duplicates there are.
     dupe_counter = 0
-
-    prev_chr = None
 
     # instantiate a set. will contain each unique combination of UMI, actual position, and strand
     output_set = set()
